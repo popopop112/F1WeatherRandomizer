@@ -8,14 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var selectedTrack = "Baku"
+    var tracks = ["Baku", "Japan", "Miami", "Abu Dhabi", "Monza", "Imola"]
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("F1 Weather Randomizer")
+                .font(.largeTitle)
+                .padding()
+            Spacer()
+            Spacer()
+            Picker("Track", selection: $selectedTrack) {
+                ForEach(tracks, id: \.self) { track in
+                    Text(track)
+                }
+            }
+            Spacer()
+            QualiSection()
+            Spacer()
+            RaceSection()
+            Spacer()
+            Button("Randomize") {
+                print("Track Selected: \(selectedTrack)")
+            }
+                .buttonStyle(.borderedProminent)
         }
-        .padding()
     }
 }
 
